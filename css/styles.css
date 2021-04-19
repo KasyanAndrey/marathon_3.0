@@ -20,8 +20,9 @@
 }
 
 :root {
-  --color-primary: #533738;
   --font-primary: "Montserrat";
+  --color-primary: #533738;
+  --primary-secondary-color: #fff;
 }
 
 *,
@@ -109,6 +110,8 @@ img {
 }
 
 .logotipe {
+  display: flex;
+  align-items: baseline;
   font-family: var(--font-primary);
   color: var(--color-primary);
   font-size: 16px;
@@ -175,7 +178,7 @@ img {
 
 .hero__btn:hover {
   background-color: rgba(206, 98, 91, 1);
-  color: white;
+  color: var(--primary-secondary-color);
   transition: color 0.2s linear;
 }
 
@@ -221,9 +224,13 @@ img {
   text-align: left;
 }
 
+.about-us__text p {
+  margin-bottom: 29px;
+}
+
 /* ------ achievements -------- */
 
-.achievements__list {
+.advantages__list {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -231,12 +238,12 @@ img {
   background-color: rgba(141, 115, 112, 1);
 }
 
-.achievements__item {
+.advantages__item {
   font-family: var(--font-primary);
   font-size: 50px;
   font-weight: 400;
   line-height: 62px;
-  color: #ffffff;
+  color: var(--primary-secondary-color);
   text-transform: uppercase;
 }
 
@@ -257,8 +264,12 @@ img {
   text-align: left;
   text-transform: uppercase;
 }
-.gallery__list {
+
+.gallery__item {
   position: relative;
+}
+
+.gallery__list {
   width: 1200px;
   height: 934px;
   margin: 0 auto;
@@ -268,18 +279,25 @@ img {
 
 .gallery__image {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .overlay {
   position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
   top: 0;
-  display: none;
-  width: 488px;
-  height: 451px;
-  background: rgba(100, 72, 69, 0.8);
+  left: 0;
+  z-index: -1;
+  box-sizing: border-box;
+  padding-right: 35px;
+  padding-left: 35px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(100, 72, 69, 0.8);
+}
+
+.gallery__item:hover .overlay {
+  z-index: 2;
 }
 
 .overlay__title {
@@ -287,7 +305,7 @@ img {
   font-family: var(--font-primary);
   font-size: 30px;
   font-weight: 500;
-  color: #ffffff;
+  color: var(--primary-secondary-color);
 }
 
 .overlay__description {
@@ -295,11 +313,8 @@ img {
   font-size: 18px;
   line-height: 30px;
   font-weight: 400;
-  color: #ffffff;
-}
-
-.gallery__item:hover .overlay {
-  display: block;
+  color: var(--primary-secondary-color);
+  overflow-y: hidden;
 }
 
 .gallery__link {
@@ -318,11 +333,24 @@ img {
   font-weight: 500;
 }
 
-.gallery__arrow {
+.more {
   display: block;
-  width: 61px;
-  height: 17px;
-  background-image: url(../images/gallery/Arrow.svg);
+  margin-top: 37px;
+  font-family: var(--font-primary);
+  color: var(--color-primary);
+  text-align: center;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 37px;
+}
+.more svg {
+  margin-left: 10px;
+}
+.more:hover path {
+  fill: #cc8b86;
+}
+.more:focus path {
+  fill: #99544f;
 }
 
 /*------------ SECTION team ---------------*/
@@ -393,7 +421,7 @@ img {
   font-size: 30px;
   font-weight: 500;
   line-height: 30px;
-  color: #ffffff;
+  color: var(--primary-secondary-color);
 }
 
 .work__item-description {
@@ -413,6 +441,7 @@ img {
 }
 
 .reviews__wrapper {
+  position: relative;
   width: 1036px;
   margin: 0 auto;
 }
@@ -472,55 +501,41 @@ img {
 /* ----------slider---------- */
 
 .reviews__slider {
+  position: absolute;
+  top: 48%;
+  left: 0;
   display: flex;
   justify-content: space-between;
-  position: absolute;
-  width: 1032px;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -5%);
-}
-
-.reviews__arrow-left {
-  width: 72px;
-  height: 72px;
-  cursor: pointer;
-}
-
-.reviews__arrow-left:active {
-  width: 76px;
-  height: 76px;
-  transition: width 0.2s, height 0.2s, linear;
-}
-
-.reviews__arrow-left::before,
-.reviews__arrow-right::before {
-  content: "";
-  display: inline-block;
   width: 100%;
-  height: 100%;
-  background-size: contain;
-  background-position: center;
+  transform: translateY(-50%);
 }
-
-.reviews__arrow-left::before {
-  background-image: url("../images/reviews/Group 199.svg");
-}
-
-.reviews__arrow-right {
-  width: 72px;
-  height: 72px;
+.reviews-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 68px;
+  height: 68px;
+  border: 2px solid #cc8b86;
+  border: none;
+  border-radius: 50%;
+  background-color: #cc8b86;
   cursor: pointer;
+  outline: none;
 }
-
-.reviews__arrow-right:active {
-  width: 76px;
-  height: 76px;
-  transition: width 0.2s, height 0.2s, linear;
+.reviews-button:hover {
+  background-color: #fff;
 }
-
-.reviews__arrow-right::before {
-  background-image: url("../images/reviews/Group 206.svg");
+.reviews-button:hover path,
+.reviews-button:focus path {
+  fill: #cc8b86;
+}
+.reviews-button:focus {
+  border: 2px solid #cc8b86;
+  background-color: #fff;
+}
+.reviews-button-prev svg {
+  transform: rotate(180deg);
 }
 
 /*---------SECTION feedback--------- */
@@ -543,7 +558,7 @@ img {
   font-size: 40px;
   font-weight: 400;
   line-height: 50px;
-  color: rgba(255, 255, 255, 1);
+  color: var(--primary-secondary-color);
   text-transform: uppercase;
 }
 
@@ -553,7 +568,7 @@ img {
   font-size: 18px;
   font-weight: 400;
   line-height: 30px;
-  color: rgba(255, 255, 255, 1);
+  color: var(--primary-secondary-color);
   opacity: 0.6;
 }
 
@@ -574,9 +589,9 @@ img {
   background-color: inherit;
   border: none;
   outline: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 1);
+  border-bottom: 1px solid #fff;
   font-family: var(--font-primary);
-  color: rgba(255, 255, 255, 1);
+  color: var(--primary-secondary-color);
 }
 
 .feedback__form-input:nth-child(2n) {
@@ -606,7 +621,7 @@ img {
 
 .contact-form-btn:hover {
   background-color: rgba(206, 98, 91, 1);
-  color: white;
+  color: var(--primary-secondary-color);
   transition: color 0.2s linear;
 }
 
